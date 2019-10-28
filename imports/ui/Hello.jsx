@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Button from '@material-ui/core/Button';
 
 export default class Hello extends Component {
   state = {
@@ -15,9 +14,8 @@ export default class Hello extends Component {
   render() {
     return (
       <div>
-        <Button variant="contained" color="primary"
-          onClick={() => this.increment()}>Click Me
-        </Button>
+        <button onClick={() => this.increment()}>Click Me</button>
+        <h1>Hello from Omnia</h1>
         <p>You've pressed the button {this.state.counter} times.</p>
       </div>
     );

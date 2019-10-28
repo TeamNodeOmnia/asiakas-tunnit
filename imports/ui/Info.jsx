@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import { withTracker } from 'meteor/react-meteor-data';
 import Links from '../api/links';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
 
 class Info extends Component {
   render() {
@@ -14,16 +11,16 @@ class Info extends Component {
     return (
       <div>
         <h2>Learn Meteor!</h2>
-        <List component="nav">{ links }</List>
+        <ul>{ links }</ul>
       </div>
     );
   }
 
   makeLink(link) {
     return (
-      <ListItem button component="a" key={link._id} href={link.url} target="_blank">
-        <ListItemText primary={link.title} />
-      </ListItem>
+      <li key={link._id}>
+        <a href={link.url} target="_blank">{link.title}</a>
+      </li>
     );
   }
 }
