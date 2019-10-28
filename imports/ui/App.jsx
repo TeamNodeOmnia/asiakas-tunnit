@@ -3,6 +3,15 @@ import Home from "./Home";
 import Posts from "./Posts";
 import NewPost from "./NewPost";
 import PostDetail from "./PostDetail";
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import { ThemeProvider } from '@material-ui/core/styles';
+import{createMuiTheme} from '@material-ui/core/styles';
+import lightBlue from '@material-ui/core/colors/lightBlue';
+
+
+import "./test.css";
+
 
 import {
   BrowserRouter as Router,
@@ -11,6 +20,7 @@ import {
   Switch,
   withRouter
 } from "react-router-dom";
+
 
 
 var myVar = setInterval(myTimerStart, 1000);
@@ -108,63 +118,79 @@ class App extends Component {
       inputTitle: e.target.value
     });
   };
-
+  
+    
   render() {
+    const theme = createMuiTheme({
+      palette: {
+        primary: lightBlue,
+      },
+    });
     console.log("test", this.props.history);
     return (
       <Router>
         <div className="App">
           <div>
-            <nav>
-              <Link to="/">Home</Link>
-              <Link to="/posts">Projects </Link>
-            </nav>
+                  <ThemeProvider theme={theme}>
+                        <div className="navBar">
+                              
+                                      <AppBar position="static" color="primary">
+                                        <Toolbar>
+                                          <nav className="abc">
+                                            <Link to="/">Home</Link>
+                                            <Link to="/posts">Projects </Link>
+                                          </nav>
+                                        </Toolbar>
+                                      </AppBar>
+                              
+                        </div>
+                        <Switch>
+                          <Route exact path="/" component={Home} />
+                          <Route
+                            exact
+                            path="/posts"
+                            render={props => (
+                              <Posts
+                                {...props}
+                                infos={this.state.infos}
+                                deletefirstInfo={this.deletefirstInfo}
+                                timeIn = {this.myTimerStart}
+                                timeOut = {this.myTimerEnds}
+                                editInfo={this.editInfo}
+                              />
+                            )}
+                          />
 
-            <Switch>
-              <Route exact path="/" component={Home} />
-              <Route
-                exact
-                path="/posts"
-                render={props => (
-                  <Posts
-                    {...props}
-                    infos={this.state.infos}
-                    deletefirstInfo={this.deletefirstInfo}
-                    timeIn = {this.myTimerStart}
-                    timeOut = {this.myTimerEnds}
-                    editInfo={this.editInfo}
-                  />
-                )}
-              />
-
-              <Route
-                exact
-                path="/posts/newpost"
-                render={props => (
-                  <NewPost
-                    {...props}
-                    getFirstInfo={this.getFirstInfo}
-                    handleChange={this.handleChange}
-                    inputTitle={this.inputTitle}
-                    inputContent={this.inputContent}
-                    deletefirstInfo={this.deletefirstInfo}
-                    infos={this.state.infos}
-                  />
-                )}
-              />
-              <Route
-                exact
-                path="/posts/:postId"
-                render={props => (
-                  <PostDetail
-                    {...props}
-                    infos={this.state.infos}
-                    deletefirstInfo={this.deletefirstInfo}
-                  />
-                )}
-              />
-            </Switch>
-          </div>
+                          <Route
+                            exact
+                            path="/posts/newpost"
+                            render={props => (
+                              <NewPost
+                                {...props}
+                                getFirstInfo={this.getFirstInfo}
+                                handleChange={this.handleChange}
+                                inputTitle={this.inputTitle}
+                                inputContent={this.inputContent}
+                                deletefirstInfo={this.deletefirstInfo}
+                                infos={this.state.infos}
+                              />
+                            )}
+                          />
+                          <Route
+                            exact
+                            path="/posts/:postId"
+                            render={props => (
+                              <PostDetail
+                                {...props}
+                                infos={this.state.infos}
+                                deletefirstInfo={this.deletefirstInfo}
+                              />
+                            )}
+                          />
+                        </Switch>
+                    
+                </ThemeProvider>
+        </div>
         </div>
       </Router>
     );
