@@ -8,11 +8,12 @@
     "visualize": "meteor --production --extra-packages bundle-visualizer"
   },
   "dependencies": {
-    "@material-ui/core": "^4.5.1",
     "@babel/runtime": "^7.3.4",
+    "@material-ui/core": "^4.5.1",
     "meteor-node-stubs": "^0.4.1",
     "react": "^16.5.0",
-    "react-dom": "^16.5.0"
+    "react-dom": "^16.5.0",
+    "react-router-dom": "^5.1.2"
   },
   "meteor": {
     "mainModule": {
