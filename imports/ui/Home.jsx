@@ -1,18 +1,42 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
 
-export default class Home extends Component {
- 
+const useStyles = makeStyles(theme => ({
+  root: {
+    flexGrow: 1,
+  },
+  paper: {
+    padding: theme.spacing(2),
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+  },
+}));
 
-  render() {
-    return (
-      <div>
-      
-        <h1>Please visit Project Page </h1>
-        <p>Go to add new project to add more project </p>
-        <p>Dont feel wieard on looks and class I will try to work tomorrow for it</p>
-        <p>Happy Coading :)</p>
-        
-      </div>
-    );
-  }
+export default function CenteredGrid() {
+  const classes = useStyles();
+
+  return (
+    <div className={classes.root}>
+      <Grid container spacing={3}>
+        <Grid item xs={12}>
+          <Paper className={classes.paper}><h1>Welcome to Timer Project</h1></Paper>
+        </Grid>
+       
+        <Grid item xs={3}>
+          <Paper className={classes.paper}>Visit Projects for detail on Project</Paper>
+        </Grid>
+        <Grid item xs={3}>
+          <Paper className={classes.paper}>Visit Projects for detail on Project</Paper>
+        </Grid>
+        <Grid item xs={3}>
+          <Paper className={classes.paper}>Feel free to comment</Paper>
+        </Grid>
+        <Grid item xs={3}>
+          <Paper className={classes.paper}> Its time tracker</Paper>
+        </Grid>
+      </Grid>
+    </div>
+  );
 }
